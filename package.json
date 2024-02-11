@@ -1,0 +1,16 @@
+{
+  "name": "suspendit",
+  "module": "src/index.ts",
+  "type": "module",
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0",
+    "react": "^16.6 | 17 | 18"
+  },
+  "dependencies": {
+    "@types/react": "^18.2.55",
+    "@types/react-dom": "^18.2.19"
+  }
+}
