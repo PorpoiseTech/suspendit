@@ -1,8 +1,6 @@
 {
   "compilerOptions": {
     "lib": ["ESNext"],
-    "target": "ESNext",
-    "module": "ESNext",
     "moduleDetection": "force",
     "jsx": "react-jsx",
     "allowJs": true,
@@ -17,6 +15,13 @@
     "skipLibCheck": true,
     "strict": true,
     "noFallthroughCasesInSwitch": true,
-    "forceConsistentCasingInFileNames": true
-  }
+    "forceConsistentCasingInFileNames": true,
+
+    // "declaration": true,
+    "module": "ESNext",
+    "target": "ESNext",
+    "sourceMap": true,
+    "outDir": "lib"
+  },
+  "files": ["src/index.tsx"]
 }

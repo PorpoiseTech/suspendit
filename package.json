@@ -1,16 +1,23 @@
 {
   "name": "suspendit",
-  "module": "src/index.ts",
+  "version": "alpha-1.0.0",
+  "packageManager": "pnpm@8.15.1",
+  "scripts": {
+    "build": "node --loader ts-node/esm build.ts"
+  },
   "type": "module",
+  "typings": "src/index.tsx",
+  "exports": {
+    ".": "./src/index.ts"
+  },
   "devDependencies": {
-    "@types/bun": "latest"
+    "@types/react": "^18.2.55",
+    "@types/react-dom": "^18.2.19",
+    "esbuild": "^0.20.0",
+    "ts-node": "^10.9.2"
   },
   "peerDependencies": {
-    "typescript": "^5.0.0",
-    "react": "^16.6 | 17 | 18"
-  },
-  "dependencies": {
-    "@types/react": "^18.2.55",
-    "@types/react-dom": "^18.2.19"
+    "react": "^16.6 || 17 || 18",
+    "typescript": "^5.0.0"
   }
 }
