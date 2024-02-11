@@ -6,7 +6,6 @@ import {
   type ReactNode,
   type ComponentType,
 } from "react";
-import "./style.css";
 
 export type SuspendItProps<Data> = {
   fallback?: ReactNode;
@@ -25,7 +24,7 @@ const EmptyDataValue = Symbol("EmptyDataValue");
 
 type EmptyDataValue = typeof EmptyDataValue;
 
-export const SuspendIt = function SuspendIt<Data>({
+export function SuspendIt<Data>({
   fallback,
   children,
   ...props
@@ -46,7 +45,7 @@ export const SuspendIt = function SuspendIt<Data>({
       </SuspendItThrower>
     </Suspense>
   );
-};
+}
 
 export type SuspendItThrowerProps<Data> = {
   promiseHandle: Promise<Data>;
