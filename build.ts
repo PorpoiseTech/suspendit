@@ -4,4 +4,5 @@ await build({
   entryPoints: ["src/index.tsx"],
   tsconfig: "./tsconfig.json",
   outdir: "lib",
+  sourcemap: true,
 });

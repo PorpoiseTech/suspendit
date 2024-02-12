@@ -1,19 +1,15 @@
 {
-  "name": "suspendit",
-  "version": "alpha-1.0.0",
+  "name": "@porpoisetech/suspendit",
+  "version": "0.0.0-alpha-2024-02-11.1",
   "packageManager": "pnpm@8.15.1",
   "scripts": {
-    "build": "node --loader ts-node/esm build.ts"
+    "build": "tsc --build"
   },
   "type": "module",
   "typings": "src/index.tsx",
-  "exports": {
-    ".": "./src/index.ts"
-  },
   "devDependencies": {
     "@types/react": "^18.2.55",
     "@types/react-dom": "^18.2.19",
-    "esbuild": "^0.20.0",
     "ts-node": "^10.9.2"
   },
   "peerDependencies": {
