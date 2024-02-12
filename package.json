@@ -1,9 +1,12 @@
 {
   "name": "@porpoisetech/suspendit",
-  "version": "0.0.0-alpha-2024-02-11.1",
+  "version": "0.0.0-alpha-2024-02-12.1",
   "packageManager": "pnpm@8.15.1",
   "scripts": {
     "build": "tsc --build"
+  },
+  "exports": {
+    ".": "./lib/index.js"
   },
   "type": "module",
   "typings": "src/index.tsx",

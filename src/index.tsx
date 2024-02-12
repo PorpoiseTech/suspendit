@@ -1,1 +1,1 @@
-export { SuspendIt } from "./suspend-it";
+export { SuspendIt } from './components/suspend-it'
