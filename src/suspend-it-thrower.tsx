@@ -1,5 +1,5 @@
 import { FC, ReactNode } from "react";
-import { EmptyDataValue } from "./components/empty-data-value";
+import { EmptyDataValue } from "./model/empty-data-value";
 import { SuspendItPromiseChildProps } from "./model/suspend-it-promise-mode";
 
 export type SuspendItThrowerProps<Data> = {

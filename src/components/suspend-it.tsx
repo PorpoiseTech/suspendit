@@ -1,47 +1,45 @@
-import { ReactNode, Suspense } from 'react'
-import { SuspendItWaitProps, SuspendItWait } from './suspend-it-wait'
-import { SuspendItGeneralProps } from '../model/suspend-it-general'
-import { SuspendItQuery, SuspendItQueryProps } from './suspend-it-query'
+import { ReactNode, Suspense, useMemo } from "react";
+import { SuspendItGeneralProps } from "../model/suspend-it-general";
+import { SuspendItPromiseMode } from "./suspend-it-promise-mode";
+import {
+  SuspendItQueryProps,
+  SuspendItWaitProps,
+} from "../model/suspend-it-promise-mode";
+import { nanoid } from "nanoid";
 
 export type SuspendItProps<Data> = SuspendItGeneralProps &
   (
     | SuspendItQueryProps<Data>
     | SuspendItWaitProps<Data>
     | { children?: ReactNode }
-  )
+  );
 
-export function SuspendIt<Data>(props: SuspendItQueryProps<Data>): ReactNode
-export function SuspendIt<Data>(props: SuspendItWaitProps<Data>): ReactNode
+export function SuspendIt<Data>(props: SuspendItQueryProps<Data>): ReactNode;
+export function SuspendIt<Data>(props: SuspendItWaitProps<Data>): ReactNode;
 export function SuspendIt(
   props: SuspendItGeneralProps & { children?: ReactNode }
-): ReactNode
-export function SuspendIt(): ReactNode
+): ReactNode;
+export function SuspendIt(): ReactNode;
 
 export function SuspendIt<Data>({
   fallback,
   ...props
 }: SuspendItProps<Data> = {}): ReactNode {
-  if (props && 'query' in props) {
+  if ((props && "query" in props) || "wait" in props) {
+    const wait = "query" in props ? props.query : props.wait;
+    const waitKey = useMemo(nanoid, [wait]);
+
     return (
-      <SuspendItQuery
-        query={props.query}
+      <SuspendItPromiseMode
+        wait={wait}
+        key={waitKey}
         onResolve={props.onResolve}
         fallback={fallback}
       >
         {props.children}
-      </SuspendItQuery>
-    )
-  } else if (props && 'wait' in props) {
-    return (
-      <SuspendItWait
-        wait={props.wait}
-        onResolve={props.onResolve}
-        fallback={fallback}
-      >
-        {props.children}
-      </SuspendItWait>
-    )
+      </SuspendItPromiseMode>
+    );
   } else {
-    return <Suspense fallback={fallback}>{props.children}</Suspense>
+    return <Suspense fallback={fallback}>{props.children}</Suspense>;
   }
 }
