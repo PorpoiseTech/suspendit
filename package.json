@@ -1,0 +1,25 @@
+{
+  "name": "@porpoisetech/suspendit",
+  "version": "0.0.0-alpha-2024-02-12.2",
+  "packageManager": "pnpm@8.15.1",
+  "scripts": {
+    "build": "tsc --build"
+  },
+  "exports": {
+    ".": "./lib/index.js"
+  },
+  "type": "module",
+  "typings": "src/index.tsx",
+  "devDependencies": {
+    "@types/react": "^18.2.55",
+    "@types/react-dom": "^18.2.19",
+    "ts-node": "^10.9.2"
+  },
+  "peerDependencies": {
+    "react": "^16.6 || 17 || 18",
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "nanoid": "^5.0.5"
+  }
+}
