@@ -1,45 +1,69 @@
-import { ReactNode, Suspense, useMemo } from "react";
-import { SuspendItGeneralProps } from "../model/suspend-it-general";
-import { SuspendItPromiseMode } from "./suspend-it-promise-mode";
+import { ReactNode, Suspense, useMemo } from 'react'
+import { nanoid } from 'nanoid'
+import { GeneralProps } from '../model/general-props.ts'
 import {
-  SuspendItQueryProps,
-  SuspendItWaitProps,
-} from "../model/suspend-it-promise-mode";
-import { nanoid } from "nanoid";
+  PromiseModeProps,
+  QueryProps,
+  WaitProps,
+} from '../model/promise-mode-props.ts'
+import { PromiseMode } from './promise-mode.tsx'
 
-export type SuspendItProps<Data> = SuspendItGeneralProps &
-  (
-    | SuspendItQueryProps<Data>
-    | SuspendItWaitProps<Data>
-    | { children?: ReactNode }
-  );
+export type SuspendItProps<Data> = GeneralProps &
+  (QueryProps<Data> | WaitProps<Data> | { children?: ReactNode })
 
-export function SuspendIt<Data>(props: SuspendItQueryProps<Data>): ReactNode;
-export function SuspendIt<Data>(props: SuspendItWaitProps<Data>): ReactNode;
+export function SuspendIt<Data>(props: QueryProps<Data>): ReactNode
+export function SuspendIt<Data>(props: WaitProps<Data>): ReactNode
 export function SuspendIt(
-  props: SuspendItGeneralProps & { children?: ReactNode }
-): ReactNode;
-export function SuspendIt(): ReactNode;
+  props: GeneralProps & { children?: ReactNode }
+): ReactNode
+export function SuspendIt(): ReactNode
 
 export function SuspendIt<Data>({
   fallback,
   ...props
 }: SuspendItProps<Data> = {}): ReactNode {
-  if ((props && "query" in props) || "wait" in props) {
-    const wait = "query" in props ? props.query : props.wait;
-    const waitKey = useMemo(nanoid, [wait]);
+  const { wait, props: inferredProps } = getWaitFromProps(props)
+  const waitKey = useMemo(nanoid, [wait])
 
+  if (wait) {
     return (
-      <SuspendItPromiseMode
+      <PromiseMode
         wait={wait}
         key={waitKey}
-        onResolve={props.onResolve}
+        onResolve={inferredProps.onResolve}
         fallback={fallback}
       >
-        {props.children}
-      </SuspendItPromiseMode>
-    );
+        {inferredProps.children}
+      </PromiseMode>
+    )
   } else {
-    return <Suspense fallback={fallback}>{props.children}</Suspense>;
+    return <Suspense fallback={fallback}>{inferredProps.children}</Suspense>
+  }
+}
+
+/**
+ * return type includes props to help typescript type inference during control flow
+ */
+function getWaitFromProps<Data>(props: SuspendItProps<Data>):
+  | {
+      wait: WaitProps<Data>['wait'] | QueryProps<Data>['query']
+      props: PromiseModeProps<Data>
+    }
+  | { wait: false; props: GeneralProps & { children?: ReactNode } } {
+  if ('query' in props) {
+    return {
+      wait: props.query,
+      props,
+    }
+  } else if ('wait' in props) {
+    return {
+      wait: props.wait,
+      props,
+    }
+  }
+
+  return {
+    wait: false,
+    props,
   }
 }

@@ -2,14 +2,18 @@
   "compilerOptions": {
     "lib": ["ESNext"],
     "jsx": "react-jsx",
-    "moduleResolution": "bundler",
+    "moduleResolution": "NodeNext",
     "strict": true,
     "forceConsistentCasingInFileNames": true,
-    "module": "ESNext",
+    "module": "NodeNext",
     "target": "ESNext",
     "sourceMap": true,
     "outDir": "lib",
-    "declaration": true
+    "declaration": true,
+    "allowImportingTsExtensions": true,
+    "emitDeclarationOnly": true,
+
+    "isolatedModules": true
   },
-  "files": ["src/index.tsx"]
+  "files": ["src/index.ts"]
 }
