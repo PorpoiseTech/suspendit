@@ -2,6 +2,16 @@
 
 Suspense support for your components
 
+- [suspendit](#suspendit)
+  - [How to install](#how-to-install)
+  - [Usage](#usage)
+    - [Suspend on queries](#suspend-on-queries)
+    - [Suspend on a promise](#suspend-on-a-promise)
+    - [Doing something when the query resolves](#doing-something-when-the-query-resolves)
+    - [Suspend on a lazy loaded component](#suspend-on-a-lazy-loaded-component)
+  - [Concepts](#concepts)
+    - [Query](#query)
+
 ## How to install
 
 This package is available on npm under the name `@porpoisetech/suspendit`. Use your favourite package manager to install:
@@ -14,7 +24,7 @@ npm install @porpoisetech/suspendit
 
 ### Suspend on queries
 
-See: Concepts: Query
+[See: Concepts - Query](#query)
 
 Suspend rendering a child component based on a query. The query will be called when the `SuspendIt` component is initially rendered. Data returned by the query will be passed in to the child component as the `data` property.
 
@@ -101,7 +111,6 @@ export const PromiseExample = () => {
         </ul>
       )}
     </>
-  )
 }
 ```
 
