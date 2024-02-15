@@ -1,6 +1,6 @@
 {
   "name": "@porpoisetech/suspendit",
-  "version": "0.0.0-alpha-2024-02-14.1",
+  "version": "0.0.0-alpha-2024-02-14.2",
   "packageManager": "pnpm@8.15.1",
   "scripts": {
     "build": "concurrently pnpm:build:definitions pnpm:build:code",
@@ -30,5 +30,24 @@
   },
   "dependencies": {
     "nanoid": "^5.0.5"
-  }
+  },
+  "description": "Suspense support for your components",
+  "main": "lib/index.jsx",
+  "directories": {
+    "example": "examples"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PorpoiseTech/suspendit.git"
+  },
+  "keywords": [
+    "react",
+    "suspense"
+  ],
+  "author": "porpoise-dev@porpoisetech.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/PorpoiseTech/suspendit/issues"
+  },
+  "homepage": "https://github.com/PorpoiseTech/suspendit#readme"
 }
