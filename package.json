@@ -1,15 +1,19 @@
 {
   "name": "@porpoisetech/suspendit",
-  "version": "0.0.0-alpha-2024-02-14.1",
+  "version": "0.0.0-alpha-2024-02-14.2",
   "packageManager": "pnpm@8.15.1",
   "scripts": {
     "build": "concurrently pnpm:build:definitions pnpm:build:code",
     "build:definitions": "tsc --build",
-    "build:code": "babel src --out-dir lib --extensions \".ts,.tsx\" --source-maps"
+    "build:code": "babel src --out-dir lib --extensions \".ts,.tsx\" --source-maps",
+    "prepare": "rimraf lib && pnpm build"
   },
   "exports": {
     ".": "./lib/index.js"
   },
+  "files": [
+    "lib/"
+  ],
   "type": "module",
   "typings": "src/index.tsx",
   "devDependencies": {
@@ -22,6 +26,7 @@
     "@types/react": "^18.2.55",
     "@types/react-dom": "^18.2.19",
     "concurrently": "^8.2.2",
+    "rimraf": "^5.0.5",
     "ts-node": "^10.9.2"
   },
   "peerDependencies": {
@@ -30,5 +35,24 @@
   },
   "dependencies": {
     "nanoid": "^5.0.5"
-  }
+  },
+  "description": "Suspense support for your components",
+  "main": "lib/index.jsx",
+  "directories": {
+    "example": "examples"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PorpoiseTech/suspendit.git"
+  },
+  "keywords": [
+    "react",
+    "suspense"
+  ],
+  "author": "porpoise-dev@porpoisetech.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/PorpoiseTech/suspendit/issues"
+  },
+  "homepage": "https://github.com/PorpoiseTech/suspendit#readme"
 }
