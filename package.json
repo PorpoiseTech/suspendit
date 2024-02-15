@@ -1,6 +1,6 @@
 {
   "name": "@porpoisetech/suspendit",
-  "version": "0.0.0-alpha-2024-02-12.2",
+  "version": "0.0.0-alpha-2024-02-14.1",
   "packageManager": "pnpm@8.15.1",
   "scripts": {
     "build": "concurrently pnpm:build:definitions pnpm:build:code",
